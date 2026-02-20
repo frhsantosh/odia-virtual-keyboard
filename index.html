@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Odia Virtual Keyboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-container">
+    <h1>Odia Virtual Keyboard</h1>
+    <p class="subtitle">Type Odia text by clicking on the keyboard keys below.</p>
+
+    <section class="help-panel" aria-label="Keyboard usage guide">
+      <button id="toggleGuide" class="guide-toggle" type="button" aria-expanded="false" aria-controls="guideContent">
+        How to Use
+      </button>
+      <div id="guideContent" class="guide-content" hidden>
+        <ol>
+          <li><strong>Typing basic letters:</strong> Click a letter and it appears in the text box.</li>
+          <li>
+            <strong>Using matras:</strong> Type consonant first, then click matra.<br />
+            Example: କ + ା = କା, କ + ି = କି
+          </li>
+          <li>
+            <strong>Using Halant for conjunct letters:</strong> Click first consonant, then Halant (୍), then second consonant.<br />
+            Example: ଙ + ୍ + କ = ଙ୍କ, ତ + ୍ + ର = ତ୍ର
+          </li>
+          <li><strong>Using Purnachhed:</strong> Use । to end a sentence.</li>
+        </ol>
+      </div>
+    </section>
+
+    <textarea
+      id="odiaOutput"
+      class="output-area"
+      placeholder="ଏଠାରେ ଓଡ଼ିଆ ଲେଖନ୍ତୁ..."
+      rows="6"
+      aria-label="Odia text output"
+    ></textarea>
+
+    <section class="keyboard" aria-label="Odia virtual keyboard">
+      <div class="key-section">
+        <h2>Vowels (ସ୍ଵର)</h2>
+        <div id="vowels" class="key-grid"></div>
+      </div>
+
+      <div class="key-section">
+        <h2>Consonants (ବ୍ୟଞ୍ଜନ)</h2>
+        <div id="consonants" class="key-grid"></div>
+      </div>
+
+      <div class="key-section">
+        <h2>Matras (ମାତ୍ରା)</h2>
+        <div id="matras" class="key-grid"></div>
+      </div>
+
+      <div class="key-section">
+        <h2>Digits (ସଂଖ୍ୟା)</h2>
+        <div id="digits" class="key-grid"></div>
+      </div>
+
+      <div class="key-section">
+        <h2>Punctuation</h2>
+        <div id="punctuation" class="key-grid"></div>
+      </div>
+
+      <div class="key-section utilities">
+        <h2>Utilities</h2>
+        <div id="utilities" class="key-grid utility-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
