@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Odia Virtual Keyboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-container">
+    <h1>Odia Virtual Keyboard</h1>
+    <p class="subtitle">Type Odia text by clicking on the keyboard keys below.</p>
+
+    <textarea
+      id="odiaOutput"
+      class="output-area"
+      placeholder="ଏଠାରେ ଓଡ଼ିଆ ଲେଖନ୍ତୁ..."
+      rows="6"
+      aria-label="Odia text output"
+    ></textarea>
+
+    <section class="keyboard" aria-label="Odia virtual keyboard">
+      <div class="key-section">
+        <h2>ସ୍ଵର (Vowels)</h2>
+        <div id="vowels" class="key-grid"></div>
+      </div>
+
+      <div class="key-section">
+        <h2>ବ୍ୟଞ୍ଜନ (Consonants)</h2>
+        <div id="consonants" class="key-grid"></div>
+      </div>
+
+      <div class="key-section">
+        <h2>ମାତ୍ରା (Matras)</h2>
+        <div id="matras" class="key-grid"></div>
+      </div>
+
+      <div class="key-section">
+        <h2>ଯୁକ୍ତାକ୍ଷର (Common Conjuncts)</h2>
+        <div id="yuktaksharas" class="key-grid"></div>
+      </div>
+
+      <div class="key-section utilities">
+        <h2>Utilities</h2>
+        <div id="utilities" class="key-grid utility-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
