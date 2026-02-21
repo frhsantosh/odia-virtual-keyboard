@@ -128,6 +128,12 @@ h1 {
   transform: translateY(0);
 }
 
+
+.phala-btn {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
 .utility-grid {
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
 }
