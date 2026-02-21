@@ -2,8 +2,8 @@
   --bg: #f4f7ff;
   --surface: #ffffff;
   --primary: #2446d8;
-  --primary-dark: #1935a5;
   --text: #1f2937;
+  --muted: #4b5563;
   --border: #d5ddf5;
   --shadow: 0 8px 24px rgba(27, 39, 94, 0.08);
 }
@@ -31,7 +31,36 @@ h1 {
 
 .subtitle {
   margin-top: 0;
-  color: #4b5563;
+  color: var(--muted);
+}
+
+.help-panel {
+  margin-bottom: 1rem;
+}
+
+.guide-toggle {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 0.55rem 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.guide-content {
+  margin-top: 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 0.8rem 1rem;
+}
+
+.guide-content ol {
+  margin: 0;
+  padding-left: 1.1rem;
+  line-height: 1.5;
 }
 
 .output-area {
@@ -85,14 +114,17 @@ h1 {
 }
 
 .key-button:hover,
-.key-button:focus-visible {
+.key-button:focus-visible,
+.guide-toggle:hover,
+.guide-toggle:focus-visible {
   background: #edf1ff;
   transform: translateY(-1px);
   box-shadow: 0 4px 10px rgba(41, 61, 152, 0.15);
   outline: none;
 }
 
-.key-button:active {
+.key-button:active,
+.guide-toggle:active {
   transform: translateY(0);
 }
 
@@ -103,6 +135,12 @@ h1 {
 .utility-btn {
   font-size: 1rem;
   font-weight: 600;
+}
+
+.utility-btn.space {
+  background: #ecfeff;
+  border-color: #bae6fd;
+  color: #0c4a6e;
 }
 
 .utility-btn.clear {

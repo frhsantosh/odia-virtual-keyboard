@@ -11,6 +11,26 @@
     <h1>Odia Virtual Keyboard</h1>
     <p class="subtitle">Type Odia text by clicking on the keyboard keys below.</p>
 
+    <section class="help-panel" aria-label="Keyboard usage guide">
+      <button id="toggleGuide" class="guide-toggle" type="button" aria-expanded="false" aria-controls="guideContent">
+        How to Use
+      </button>
+      <div id="guideContent" class="guide-content" hidden>
+        <ol>
+          <li><strong>Typing basic letters:</strong> Click a letter and it appears in the text box.</li>
+          <li>
+            <strong>Using matras:</strong> Type consonant first, then click matra.<br />
+            Example: କ + ା = କା, କ + ି = କି
+          </li>
+          <li>
+            <strong>Using Halant for conjunct letters:</strong> Click first consonant, then Halant (୍), then second consonant.<br />
+            Example: ଙ + ୍ + କ = ଙ୍କ, ତ + ୍ + ର = ତ୍ର
+          </li>
+          <li><strong>Using Purnachhed:</strong> Use । to end a sentence.</li>
+        </ol>
+      </div>
+    </section>
+
     <textarea
       id="odiaOutput"
       class="output-area"
@@ -21,23 +41,28 @@
 
     <section class="keyboard" aria-label="Odia virtual keyboard">
       <div class="key-section">
-        <h2>ସ୍ଵର (Vowels)</h2>
+        <h2>Vowels (ସ୍ଵର)</h2>
         <div id="vowels" class="key-grid"></div>
       </div>
 
       <div class="key-section">
-        <h2>ବ୍ୟଞ୍ଜନ (Consonants)</h2>
+        <h2>Consonants (ବ୍ୟଞ୍ଜନ)</h2>
         <div id="consonants" class="key-grid"></div>
       </div>
 
       <div class="key-section">
-        <h2>ମାତ୍ରା (Matras)</h2>
+        <h2>Matras (ମାତ୍ରା)</h2>
         <div id="matras" class="key-grid"></div>
       </div>
 
       <div class="key-section">
-        <h2>ଯୁକ୍ତାକ୍ଷର (Common Conjuncts)</h2>
-        <div id="yuktaksharas" class="key-grid"></div>
+        <h2>Digits (ସଂଖ୍ୟା)</h2>
+        <div id="digits" class="key-grid"></div>
+      </div>
+
+      <div class="key-section">
+        <h2>Punctuation</h2>
+        <div id="punctuation" class="key-grid"></div>
       </div>
 
       <div class="key-section utilities">

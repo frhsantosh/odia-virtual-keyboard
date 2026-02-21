@@ -1,4 +1,6 @@
 const output = document.getElementById('odiaOutput');
+const toggleGuideButton = document.getElementById('toggleGuide');
+const guideContent = document.getElementById('guideContent');
 
 const vowels = ['ଅ', 'ଆ', 'ଇ', 'ଈ', 'ଉ', 'ଊ', 'ଋ', 'ୠ', 'ଌ', 'ୡ', 'ଏ', 'ଐ', 'ଓ', 'ଔ', 'ଂ', 'ଃ'];
 const consonants = [
@@ -11,11 +13,13 @@ const consonants = [
   'ଶ', 'ଷ', 'ସ', 'ହ'
 ];
 const matras = ['ା', 'ି', 'ୀ', 'ୁ', 'ୂ', 'ୃ', 'େ', 'ୈ', 'ୋ', 'ୌ', '୍'];
-const yuktaksharas = ['କ୍ଷ', 'ତ୍ର', 'ଜ୍ଞ', 'ଶ୍ର', 'ଦ୍ୟ', 'ନ୍ଦ'];
+const digits = ['୦', '୧', '୨', '୩', '୪', '୫', '୬', '୭', '୮', '୯'];
+const punctuation = ['।', '॥', ',', '.', '?', '!', ':'];
 
 /**
- * Insert text at the cursor/selection inside the textarea.
- * If some text is selected, the selection is replaced by the inserted character.
+ * Insert text at the current cursor/selection inside the textarea.
+ * This uses standard Unicode insertion so Halant-based conjuncts form naturally,
+ * for example: ଙ + ୍ + କ => ଙ୍କ and ତ + ୍ + ର => ତ୍ର.
  */
 function insertAtCursor(textToInsert) {
   const start = output.selectionStart;
@@ -24,15 +28,14 @@ function insertAtCursor(textToInsert) {
 
   output.value = currentValue.slice(0, start) + textToInsert + currentValue.slice(end);
 
-  // Move cursor to right after the inserted text and keep focus in textarea.
   const newPosition = start + textToInsert.length;
   output.focus();
   output.setSelectionRange(newPosition, newPosition);
 }
 
 /**
- * Create keyboard buttons from an array and append them to target container.
- * Each key click inserts the matching Odia Unicode symbol into the textarea.
+ * Create keyboard buttons from an array and append them to a target container.
+ * Every key click inserts the matching character at the cursor location.
  */
 function createKeyButtons(characters, containerId) {
   const container = document.getElementById(containerId);
@@ -43,12 +46,39 @@ function createKeyButtons(characters, containerId) {
     button.className = 'key-button';
     button.textContent = char;
 
-    button.addEventListener('click', () => {
-      insertAtCursor(char);
-    });
+    button.addEventListener('click', () => insertAtCursor(char));
 
     container.appendChild(button);
   });
+}
+
+/**
+ * Remove the grapheme cluster right before cursor position.
+ * This keeps complex Odia sequences (base + matra/halant marks) deletion-friendly.
+ */
+function removePreviousGrapheme(text, cursorIndex) {
+  const before = text.slice(0, cursorIndex);
+  const after = text.slice(cursorIndex);
+
+  if (!before) {
+    return { text, newCursor: cursorIndex };
+  }
+
+  // Prefer Intl.Segmenter for accurate grapheme boundaries.
+  if (typeof Intl !== 'undefined' && Intl.Segmenter) {
+    const segmenter = new Intl.Segmenter(undefined, { granularity: 'grapheme' });
+    const graphemes = [...segmenter.segment(before)];
+    const previous = graphemes[graphemes.length - 1];
+    const newBefore = before.slice(0, previous.index);
+
+    return { text: newBefore + after, newCursor: previous.index };
+  }
+
+  // Fallback: remove one Unicode code point.
+  const codePoints = Array.from(before);
+  codePoints.pop();
+  const newBefore = codePoints.join('');
+  return { text: newBefore + after, newCursor: newBefore.length };
 }
 
 function createUtilityButtons() {
@@ -63,13 +93,13 @@ function createUtilityButtons() {
     const start = output.selectionStart;
     const end = output.selectionEnd;
 
-    // If text is selected, delete the selected range; otherwise remove one character before cursor.
     if (start !== end) {
       output.value = output.value.slice(0, start) + output.value.slice(end);
       output.setSelectionRange(start, start);
     } else if (start > 0) {
-      output.value = output.value.slice(0, start - 1) + output.value.slice(start);
-      output.setSelectionRange(start - 1, start - 1);
+      const result = removePreviousGrapheme(output.value, start);
+      output.value = result.text;
+      output.setSelectionRange(result.newCursor, result.newCursor);
     }
 
     output.focus();
@@ -79,17 +109,42 @@ function createUtilityButtons() {
   clearButton.type = 'button';
   clearButton.className = 'key-button utility-btn clear';
   clearButton.textContent = 'Clear';
-
   clearButton.addEventListener('click', () => {
     output.value = '';
     output.focus();
   });
 
-  utilities.append(backspaceButton, clearButton);
+  const spaceButton = document.createElement('button');
+  spaceButton.type = 'button';
+  spaceButton.className = 'key-button utility-btn space';
+  spaceButton.textContent = 'Space';
+  spaceButton.addEventListener('click', () => insertAtCursor(' '));
+
+  utilities.append(backspaceButton, clearButton, spaceButton);
+}
+
+/**
+ * Toggle help panel visibility.
+ * Hidden by default and expanded only when user clicks the "How to Use" button.
+ */
+function setupGuideToggle() {
+  toggleGuideButton.addEventListener('click', () => {
+    const isHidden = guideContent.hasAttribute('hidden');
+
+    if (isHidden) {
+      guideContent.removeAttribute('hidden');
+      toggleGuideButton.setAttribute('aria-expanded', 'true');
+    } else {
+      guideContent.setAttribute('hidden', '');
+      toggleGuideButton.setAttribute('aria-expanded', 'false');
+    }
+  });
 }
 
 createKeyButtons(vowels, 'vowels');
 createKeyButtons(consonants, 'consonants');
 createKeyButtons(matras, 'matras');
-createKeyButtons(yuktaksharas, 'yuktaksharas');
+createKeyButtons(digits, 'digits');
+createKeyButtons(punctuation, 'punctuation');
 createUtilityButtons();
+setupGuideToggle();
