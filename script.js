@@ -19,7 +19,7 @@ const phalas = [
   { label: 'ର୍ ଫଳା', consonant: 'ର' },
   { label: 'ଯ୍ ଫଳା', consonant: 'ଯ' },
   { label: 'ମ୍ ଫଳା', consonant: 'ମ' },
-  { label: 'ବ୍ ଫଳା', consonant: 'ବ' },
+  { label: 'ବ୍ ଫଳା', consonant: 'ଵ' },
   { label: 'ଲ୍ ଫଳା', consonant: 'ଲ' },
   { label: 'ନ୍ ଫଳା', consonant: 'ନ' }
 ];
