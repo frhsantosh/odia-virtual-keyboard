@@ -88,6 +88,7 @@ h1 {
   border-radius: 12px;
   padding: 0.8rem;
   box-shadow: var(--shadow);
+  overflow: visible;
 }
 
 .key-section h2 {
@@ -99,7 +100,9 @@ h1 {
   display: grid;
   gap: 0.5rem;
   grid-template-columns: repeat(auto-fill, minmax(54px, 1fr));
+  overflow: visible;
 }
+
 
 .key-button {
   border: 1px solid var(--border);
@@ -109,6 +112,7 @@ h1 {
   min-height: 44px;
   padding: 0.4rem;
   font-size: 1.2rem;
+  white-space: nowrap;
   cursor: pointer;
   transition: transform 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
 }
