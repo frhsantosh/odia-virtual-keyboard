@@ -17,7 +17,7 @@ const digits = ['୦', '୧', '୨', '୩', '୪', '୫', '୬', '୭', '୮', '
 const punctuation = ['।', '॥', ',', '.', '?', '!', ':'];
 const phalas = [
   { label: 'ର୍ ଫଳା', consonant: 'ର' },
-  { label: 'ଯ୍ ଫଳା', consonant: 'ୟ' },
+  { label: 'ଯ୍ ଫଳା', consonant: '\u0B5F' },
   { label: 'ମ୍ ଫଳା', consonant: 'ମ' },
   { label: 'ବ୍ ଫଳା', consonant: 'ଵ' },
   { label: 'ଲ୍ ଫଳା', consonant: 'ଲ' },
