@@ -14,7 +14,7 @@
 
 body {
   margin: 0;
-  font-family: "Noto Sans Oriya", "Kalinga", "Segoe UI", Arial, sans-serif;
+  font-family: "Noto Sans Oriya", "Nirmala UI", "Kalinga", "Noto Sans", "Segoe UI", Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
 }
