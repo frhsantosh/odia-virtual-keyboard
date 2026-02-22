@@ -1,0 +1,186 @@
+:root {
+  --bg: #f4f7ff;
+  --surface: #ffffff;
+  --primary: #2446d8;
+  --text: #1f2937;
+  --muted: #4b5563;
+  --border: #d5ddf5;
+  --shadow: 0 8px 24px rgba(27, 39, 94, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Noto Sans Oriya", "Nirmala UI", "Kalinga", "Noto Sans", "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app-container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+h1 {
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  margin-top: 0;
+  color: var(--muted);
+}
+
+.help-panel {
+  margin-bottom: 1rem;
+}
+
+.guide-toggle {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 0.55rem 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.guide-content {
+  margin-top: 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 0.8rem 1rem;
+}
+
+.guide-content ol {
+  margin: 0;
+  padding-left: 1.1rem;
+  line-height: 1.5;
+}
+
+.output-area {
+  width: 100%;
+  min-height: 180px;
+  padding: 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  font-size: 1.35rem;
+  line-height: 1.65;
+  resize: vertical;
+}
+
+.keyboard {
+  margin-top: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.key-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.8rem;
+  box-shadow: var(--shadow);
+  overflow: visible;
+}
+
+.key-section h2 {
+  margin: 0 0 0.6rem;
+  font-size: 1.05rem;
+}
+
+.key-grid {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(54px, 1fr));
+  overflow: visible;
+}
+
+
+.key-button {
+  border: 1px solid var(--border);
+  background: #f9faff;
+  color: var(--text);
+  border-radius: 10px;
+  min-height: 44px;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+}
+
+.key-button:hover,
+.key-button:focus-visible,
+.guide-toggle:hover,
+.guide-toggle:focus-visible {
+  background: #edf1ff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(41, 61, 152, 0.15);
+  outline: none;
+}
+
+.key-button:active,
+.guide-toggle:active {
+  transform: translateY(0);
+}
+
+
+.phala-btn {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.utility-grid {
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}
+
+.utility-btn {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.utility-btn.space {
+  background: #ecfeff;
+  border-color: #bae6fd;
+  color: #0c4a6e;
+}
+
+.utility-btn.clear {
+  background: #fee2e2;
+  border-color: #fecaca;
+  color: #991b1b;
+}
+
+.utility-btn.backspace {
+  background: #dbeafe;
+  border-color: #bfdbfe;
+  color: #1e40af;
+}
+
+@media (max-width: 680px) {
+  .app-container {
+    padding: 0.75rem;
+  }
+
+  .output-area {
+    font-size: 1.2rem;
+    min-height: 150px;
+  }
+
+  .key-grid {
+    grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+  }
+
+  .key-button {
+    min-height: 40px;
+    font-size: 1.05rem;
+  }
+}
