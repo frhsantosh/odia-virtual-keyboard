@@ -1,0 +1,191 @@
+:root {
+  --bg: #f5f7fa;
+  --surface: #ffffff;
+  --text: #1f2937;
+  --muted: #4b5563;
+  --border: #dbe3ef;
+  --shadow: 0 3px 10px rgba(15, 23, 42, 0.06);
+  --hover-bg: #eef2f7;
+  --focus: rgba(59, 130, 246, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Noto Serif Oriya", serif;
+  font-size: 17px;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app-container {
+  max-width: 900px;
+  margin: 1.5rem auto 2rem;
+  padding: 0 1rem;
+}
+
+h1 {
+  margin-bottom: 0.35rem;
+}
+
+.subtitle {
+  margin-top: 0;
+  color: var(--muted);
+}
+
+.help-panel {
+  margin-bottom: 1rem;
+}
+
+.guide-toggle {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 0.65rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.guide-content {
+  margin-top: 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 0.85rem 1rem;
+}
+
+.guide-content ol {
+  margin: 0;
+  padding-left: 1.2rem;
+  line-height: 1.55;
+}
+
+.output-area {
+  width: 100%;
+  min-height: 185px;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  font-size: 24px;
+  line-height: 1.55;
+  resize: vertical;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.output-area:focus {
+  outline: none;
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 3px var(--focus);
+}
+
+.keyboard {
+  margin-top: 1.25rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.key-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.9rem;
+  box-shadow: var(--shadow);
+  overflow: visible;
+}
+
+.key-section h2 {
+  margin: 0 0 0.75rem;
+  padding-bottom: 0.45rem;
+  font-size: 1.18rem;
+  border-bottom: 1px solid #e8edf5;
+}
+
+.key-grid {
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+  overflow: visible;
+}
+
+.key-button {
+  border: 1px solid var(--border);
+  background: #f9fbff;
+  color: var(--text);
+  border-radius: 8px;
+  min-height: 46px;
+  padding: 0.5rem 0.45rem;
+  font-size: 20px;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: visible;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.07);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.key-button:hover,
+.key-button:focus-visible,
+.guide-toggle:hover,
+.guide-toggle:focus-visible {
+  background: var(--hover-bg);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.1);
+  outline: none;
+}
+
+.phala-btn,
+.utility-btn {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.utility-grid {
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}
+
+.utility-btn.space {
+  background: #eefcff;
+  border-color: #cdefff;
+  color: #0c4a6e;
+}
+
+.utility-btn.clear {
+  background: #fff1f1;
+  border-color: #ffd8d8;
+  color: #991b1b;
+}
+
+.utility-btn.backspace {
+  background: #eff6ff;
+  border-color: #d8e9ff;
+  color: #1e40af;
+}
+
+@media (max-width: 680px) {
+  .app-container {
+    margin: 1rem auto 1.5rem;
+    padding: 0 0.75rem;
+  }
+
+  .output-area {
+    font-size: 22px;
+    min-height: 155px;
+  }
+
+  .key-grid {
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+  }
+
+  .key-button {
+    min-height: 42px;
+    font-size: 18px;
+  }
+}
